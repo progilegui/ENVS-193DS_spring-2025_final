@@ -1,0 +1,42 @@
+---
+title: "ENVS 193DS Spring 2025 Final"
+author: "Jose Cardoso"
+date: "06/06/2025"
+format:
+  html:
+    toc: true # use this to display a table of contents
+execute:
+  message: false # use this to make sure messages don't show up
+  warning: false # use this to make sure warnings don't show up
+---
+
+# Set up
+
+```{r}
+
+```
+
+# Problem 1
+
+```{r}
+
+```
+
+# Problem 2
+
+```{r}
+
+```
+
+# Problem 3
+
+```{r}
+
+```
+
+# Problem 4
+
+```{r}
+
+```
+
