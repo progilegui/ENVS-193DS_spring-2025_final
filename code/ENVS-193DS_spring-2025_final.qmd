@@ -13,7 +13,13 @@ execute:
 # Set up
 
 ```{r}
+#| message: false
 
+# insert code to read in packages here
+library(tidyverse)
+library(janitor)
+library(here)
+library(flextable)
 ```
 
 # Problem 1
