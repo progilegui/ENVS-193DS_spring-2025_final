@@ -20,18 +20,55 @@ library(tidyverse)
 library(janitor)
 library(here)
 library(flextable)
+
+# insert code to read in your data here
+sst <- read_csv("/Users/admin/Documents/github/ENVS-193DS_spring-2025_final/data/SST_update2023.csv")
+
+occ <- read_csv("/Users/admin/Documents/github/ENVS-193DS_spring-2025_final/data/occdist.csv")
 ```
 
 # Problem 1
 
-```{r}
+## a. Transparent statistical methods
 
-```
+In part 1, the co-worker used the Pearson's r correlation test. In part 2, the co-worker used .
+
+## b. More information needed
+
+
+
+## c. Suggestions for rewriting
+
+
 
 # Problem 2
 
+## a. Cleaning and summarizing
 ```{r}
+# cleaning and summarizing data
+sst_clean <- sst |> #creating clean data frame
+  clean_names() |> # capital to lowercase and spaces to underscores
+  mutate(year = year(date), # creating new year and month columns
+         month1 = month(date),
+         month = month(month1, label = TRUE, abbr = TRUE)) |> 
+  select(year, month, temp) |>  # selecting only the date and temp columns
+  mutate(month = as_factor(month),
+         month = fct_relevel(
+           month, 
+           "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",            "Nov", "Dec")
+         ) |> 
+  mutate(year = as_factor(year),
+         year = fct_relevel(
+           year, "2018", "2019", "2020", "2021", "2022", "2023"
+         )) |> 
+  group_by(year,month) |> # group data by year and month
+  summarize(mean_monthly_sst = mean(temp, na.rm = TRUE)) |> # calculate surface water temp mean of each month
+  ungroup() |> 
+  filter(year %in% c("2018", "2019", "2020", "2021", "2022", "2023"))
 
+slice_sample(sst_clean, n = 5)
+
+str(sst_clean)
 ```
 
 # Problem 3
