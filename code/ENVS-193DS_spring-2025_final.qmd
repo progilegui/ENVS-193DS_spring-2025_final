@@ -94,9 +94,67 @@ ggplot(data = sst_clean, # use sst_clean data frame
 
 # Problem 3
 
+## a. Response variable
+
+The 1s and 0s in this data set correspond to whether a nest box is or is not occupied. This was done for each species.
+
+## b. Purpose of study
+
+Swift Parrots are the target species for restoration efforts, while Tree Martins and Common Starlings are nontarget species that readily exploit the restoration efforts.
+
+## c. Difference in "seasons"
+
+The two years are years where a mast tree flowering event occurred, and the seasons are breeding events induced by the mast tree flowering event. The difference in the two years is in 2019, the second proposed restoration method was tested-permanent nesting boxes.
+
+## d. Table of models
+
 ```{r}
 
 ```
+
+
+## e. Run the models
+
+```{r}
+
+```
+
+
+## f. Check the diagnostics
+
+```{r}
+
+```
+
+
+## g. Select the best model
+
+```{r}
+
+```
+
+
+## h. Visualize the model predictions
+
+```{r}
+
+```
+
+
+## i. Write a caption for your figure
+
+
+
+## j. Calculate model predictions
+
+```{r}
+
+```
+
+
+## k. Interpret your results
+
+
 
 # Problem 4
 
