@@ -221,11 +221,13 @@ ggpredict(model1,
 
 # Problem 4
 
-* I represented my data as a 
+## a. Comparing visualizations
 
-* The similarities in visualizations
+* My homework 2 visualizations only had half of my data points, had the default themes, default colors, and were two separate plots (box w/jitter and connected scatter) did not show the relationship between my predictor variables, presence of the sun and time since engine was last shutoff, and my response variable, time until engine switch to EV mode, as clearly. My homework 3 visualization was one connected scatter plot that included time since engine was last shutoff and time until engine switch to EV mode as the x and y axis, respectively, with the presence of the sun as a color gradient fill under the curve of the plotted data points.
 
-* The patterns I see in each visualization are
+* The similarities seen between all visualizations are that all y-axes, time until EV switch, are the same. 
 
-* The feedback I received in week 9
+* The patterns I see in each visualization are that there is a positive correlation between time since engine was last shutoff and time of day with time until engine switch to EV mode. The connected scatter plots share the same pattern, while the boxplot w/jitter had the inverse relationship due to presence of the sun acting as the x-axis. 
+
+* The feedback I received in week 9 included positive feedback regarding the choice of color, theme, and clarity of data representation. I was advised to change the background color of the plot from homework 3 to neutral color so that there was not a high contrast between the red background and blue gradient, which I implemented by changing the background color to gray.
 
