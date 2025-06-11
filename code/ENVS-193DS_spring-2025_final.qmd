@@ -20,11 +20,13 @@ library(tidyverse)
 library(janitor)
 library(here)
 library(flextable)
+library(ggeffects) # getting model predictions
+library(MuMIn) # model selection
 
 # insert code to read in your data here
 sst <- read_csv("/Users/admin/Documents/github/ENVS-193DS_spring-2025_final/data/SST_update2023.csv")
 
-occ <- read_csv("/Users/admin/Documents/github/ENVS-193DS_spring-2025_final/data/occdist.csv")
+nest_boxes <- read_csv("/Users/admin/Documents/github/ENVS-193DS_spring-2025_final/data/occdist.csv")
 ```
 
 # Problem 1
@@ -109,41 +111,102 @@ The two years are years where a mast tree flowering event occurred, and the seas
 ## d. Table of models
 
 ```{r}
+models <- data.frame(
+  Model = c("0", "1", "2", "3"),
+  Season = c(10, 25, 7,8),
+  Note = c("Red and sweet", "Yellow and soft", "Small and tart", "30m"),
+  description = c("null", "saturated", "other", "other"),
+  stringsAsFactors = FALSE
+)
 
+# Create the flextable
+table_models <- flextable(models)
+
+# Display the flextable
+table_models
 ```
 
 
 ## e. Run the models
 
 ```{r}
+# clean data frame
+nest_boxes_clean <- nest_boxes |> 
+  clean_names() |> 
+  select(edge_distance, season, sp)
 
+
+model0 <- lm(
+  sp ~ 1, # formula
+  data = nest_boxes_clean # data frame
+)
+
+model1 <- lm(
+  sp ~ edge_distance + season, # formula
+  data = nest_boxes_clean # data frame
+)
+  
+model2 <- lm(
+  sp ~ edge_distance, # formula
+  data = nest_boxes_clean # data frame
+)
+
+model3 <- lm(
+  sp ~ season, # formula
+  data = nest_boxes_clean # data frame
+)
 ```
 
 
 ## f. Check the diagnostics
 
 ```{r}
-
+# model 1: all predictors
+par(mfrow = c(2,2))
+plot(model1)
 ```
 
+```{r}
+# model 2: distance to forest edge
+par(mfrow = c(2,2))
+plot(model2)
+```
+
+```{r}
+# model 3: season
+par(mfrow = c(2,2))
+plot(model3)
+```
 
 ## g. Select the best model
 
 ```{r}
-
+AICc(model1, # best model: saturated
+     model2,
+     model3,
+     model0) |> 
+  # arranging output in descending order of AIC
+  arrange(AICc)
 ```
 
+The best model that predicts Swift Parrot next box occupancy, as determined by Akaike’s Information Criterion (AIC), includes the distance from forest edge and the season.
 
 ## h. Visualize the model predictions
 
 ```{r}
-
+ggpredict(model1,
+          terms = c("edge_distance",
+                    "season")) |> 
+  plot(show_data = TRUE)+
+  theme_classic()+
+  labs(x = "Distance from forest edge (m)",
+       y = "Nest box occupancy")
 ```
 
 
 ## i. Write a caption for your figure
 
-
+**Figure 1. Swift Parrot nest box occupancy decreases as the distance from the forest edge increases.** 
 
 ## j. Calculate model predictions
 
@@ -158,7 +221,11 @@ The two years are years where a mast tree flowering event occurred, and the seas
 
 # Problem 4
 
-```{r}
+* I represented my data as a 
 
-```
+* The similarities in visualizations
+
+* The patterns I see in each visualization are
+
+* The feedback I received in week 9
 
