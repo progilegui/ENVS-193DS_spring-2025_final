@@ -33,15 +33,17 @@ nest_boxes <- read_csv("/Users/admin/Documents/github/ENVS-193DS_spring-2025_fin
 
 ## a. Transparent statistical methods
 
-In part 1, the co-worker used the Pearson's r correlation test. In part 2, the co-worker used .
+In part 1, the co-worker used the Pearson's r correlation test. In part 2, the co-worker used an Analysis of Variance (ANOVA) test to 
 
 ## b. More information needed
 
-
+A Tukey’s HSD post-hoc test should be included to identify which specific nitrogen sources differ significantly in mean nitrogen load, since the ANOVA test only tells us that at least one group is different. It would also help to include descriptive statistics like the mean and standard deviation for each source type to give a clearer picture of how nitrogen loads vary across groups and how large those differences actually are.
 
 ## c. Suggestions for rewriting
 
+Nitrogen load appeared to increase with distance from the headwater, suggesting downstream accumulation of nitrogen inputs. (Pearson's r = correlation coefficient, distribution = [not reported], test statistic = [not reported], p = 0.03, significance level = [not reported]).
 
+Nitrogen loads varied among different source types, which may indicate that some sources, like fertilizer or wastewater, contribute more nitrogen than others. (One-way ANOVA, F([not reported]) = [not reported], p = 0.02, significance level = [not reported]).
 
 # Problem 2
 
