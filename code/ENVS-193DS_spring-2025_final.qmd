@@ -108,24 +108,29 @@ Swift Parrots are the target species for restoration efforts, while Tree Martins
 
 ## c. Difference in "seasons"
 
-The two years are years where a mast tree flowering event occurred, and the seasons are breeding events induced by the mast tree flowering event. The difference in the two years is in 2019, the second proposed restoration method was tested-permanent nesting boxes.
+The two years are years where a mast tree flowering event occurred, and the seasons are breeding events induced by the mast tree flowering event. The difference in the two years is in 2019, where the second proposed restoration method was tested-permanent nesting boxes.
 
 ## d. Table of models
 
 ```{r}
 models <- data.frame(
-  Model = c("0", "1", "2", "3"),
-  Season = c(10, 25, 7,8),
-  Note = c("Red and sweet", "Yellow and soft", "Small and tart", "30m"),
-  description = c("null", "saturated", "other", "other"),
+  Model = c("0", "1", "2", "3"), #labeling model number
+  Season = c(" ", "X", " ","X"), #indicating if season is included or not in model
+  Note = c(" ", "X", "X", " "), #indicating if distance from forest edge is included or not in model
+  description = c("Null model", "Saturated model", "Distance from forest edge", "Season"), # model description
   stringsAsFactors = FALSE
 )
 
 # Create the flextable
-table_models <- flextable(models)
+table_models <- flextable(models) 
+# Changing header labels
+table_models <- labelizor(
+  x = table_models,
+  part = "header",
+  labels = c("Model" = "Model", "Season" = "Season", "Note" = "Distance from forest edge", "description" = " Model description")
+)
+set_table_properties(table_models, width = 1, layout = "autofit")
 
-# Display the flextable
-table_models
 ```
 
 
@@ -208,18 +213,24 @@ ggpredict(model1,
 
 ## i. Write a caption for your figure
 
-**Figure 1. Swift Parrot nest box occupancy decreases as the distance from the forest edge increases.** 
+**Figure 1. Swift Parrot nest box occupancy decreases as the distance from the forest edge increases.** Stojanovic, Dejan et al. (2021). Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird [Dataset]. Dryad. https://doi.org/10.5061/dryad.83bk3j9sb
 
 ## j. Calculate model predictions
 
 ```{r}
+sp_prob <- ggpredict(
+  model1, #selecting model 1
+  terms = "edge_distance[0,900], #choosing 0 and 900 m
+  season"
+)
 
+print(sp_prob)
 ```
 
 
 ## k. Interpret your results
 
-
+The figure in part h shows that predicted Swift Parrot nest box occupancy is higher at the forest edge (0 m) and decreases as distance from the edge increases, with this pattern existing in both seasons. The probability of occupancy is higher in 2016 than in 2019 at 0 m, and by 900 m, probabilities drop in both seasons, with 2019 showing lower predicted occupancy. The biology explaining the trends found are that Swift Parrot nest box occupancy likely drops farther from the forest edge because they prefer edge habitats where boxes are easier to find and there's less initial competition from the nontarget species. The permanent nesting boxes near the edge can end up being used more by the Common Starlings and Tree Martins, leaving fewer for the Swift Parrots.
 
 # Problem 4
 
